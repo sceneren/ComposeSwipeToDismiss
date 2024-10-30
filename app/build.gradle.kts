@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.github.sceneren.compose.banner.simple"
+    namespace = "com.github.sceneren.compose.swipe.simple"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.github.sceneren.compose.banner"
+        applicationId = "com.github.sceneren.compose.swipe"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

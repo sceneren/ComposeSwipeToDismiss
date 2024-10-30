@@ -1,4 +1,4 @@
-package com.github.sceneren.compose.banner.simple.theme
+package com.github.sceneren.compose.swipe.simple.theme
 
 import androidx.compose.ui.graphics.Color
 
