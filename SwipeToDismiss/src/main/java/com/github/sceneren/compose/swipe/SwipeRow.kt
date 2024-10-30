@@ -22,7 +22,7 @@ import kotlin.math.roundToInt
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
- fun rememberSwipeRowState(
+fun rememberSwipeRowState(
     // 初始锚点位置
     initialValue: DragAnchors = DragAnchors.Center,
     // 位置阈值,0.5f表示50%时进行锚点切换
@@ -49,6 +49,30 @@ import kotlin.math.roundToInt
     SwipeRowState(draggableState)
 }
 
+
+@OptIn(ExperimentalFoundationApi::class)
+fun defaultSwipeRowState(
+    // 初始锚点位置
+    initialValue: DragAnchors = DragAnchors.Center,
+    // 位置阈值,0.5f表示50%时进行锚点切换
+    positionalThreshold: (distance: Float) -> Float = { distance -> distance * 0.5f },
+    // 速度阈值,100表示速度达到100像素/s时进行锚点切换
+    velocityThreshold: () -> Float = { 200f },
+    // 动画配置
+    snapAnimationSpec: SpringSpec<Float> = SpringSpec(),
+    decayAnimationSpec: DecayAnimationSpec<Float> = exponentialDecay(),
+): SwipeRowState {
+    val draggableState = AnchoredDraggableState(
+        initialValue = initialValue,
+        positionalThreshold = positionalThreshold,
+        velocityThreshold = velocityThreshold,
+        snapAnimationSpec = snapAnimationSpec,
+        decayAnimationSpec = decayAnimationSpec,
+    )
+
+    return SwipeRowState(draggableState)
+}
+
 private fun SubcomposeMeasureScope.measure(
     constraints: Constraints,
     slotName: String,
@@ -68,7 +92,7 @@ private fun SubcomposeMeasureScope.measure(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
- fun SwipeRow(
+fun SwipeRow(
     modifier: Modifier = Modifier,
     state: SwipeRowState = rememberSwipeRowState(),
     startContent: (@Composable () -> Unit)? = null,
