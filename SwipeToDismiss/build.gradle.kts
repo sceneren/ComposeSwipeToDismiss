@@ -47,7 +47,7 @@ afterEvaluate {
             create<MavenPublication>("release") {
                 groupId = "com.github.sceneren"
                 artifactId = "SwipeToDismiss"
-                version = "0.0.1"
+                version = "0.0.4"
             }
         }
     }
